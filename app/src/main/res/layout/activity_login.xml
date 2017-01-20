@@ -8,10 +8,77 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.pri.android.organiseworkforce.LoginActivity">
+    tools:context="com.pri.android.organiseworkforce.LoginActivity"
+    android:background="@color/colorPrimary">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/self_service"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/logo_image_view" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@color/colorPrimaryLight">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Employee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:layout_weight="1"
+                    android:textSize="24sp"
+                    android:background="@drawable/cell_border"
+                    android:padding="8dp"/>
+
+                <TextView
+                    android:text="Employer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:layout_weight="1"
+                    android:textSize="24sp"
+                    android:background="@drawable/cell_border"
+                    android:padding="8dp"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_border">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/employee_sign_in_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:background="@drawable/cell_border"/>
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/employer_sign_in_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:background="@drawable/cell_border"/>
+            </TableRow>
+
+
+        </TableLayout>
+    </LinearLayout>
 </RelativeLayout>

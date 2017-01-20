@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "214615827571",
+    "firebase_url": "https://organise-workforce.firebaseio.com",
+    "project_id": "organise-workforce",
+    "storage_bucket": "organise-workforce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214615827571:android:16dafddd9dd3872e",
+        "android_client_info": {
+          "package_name": "com.pri.android.organiseworkforce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214615827571-f57bbds2fjkl02gf8b8m5k2o3lm9iod2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pri.android.organiseworkforce",
+            "certificate_hash": "ED3AD1C4E5B3335641D664568403890B2108486B"
+          }
+        },
+        {
+          "client_id": "214615827571-9c1q17juv8rq6rolh9soqbp87rgomlks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZOu1lIOE6zkc14cN3kImnba89yBrvlGw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214615827571-9c1q17juv8rq6rolh9soqbp87rgomlks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
