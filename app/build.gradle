@@ -24,6 +24,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.github.ceryle:SegmentedButton:v1.2.2'
     compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.github.ceryle:RadioRealButton:v1.4.9'
     testCompile 'junit:junit:4.12'
 }
