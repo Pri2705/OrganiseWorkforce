@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private FirebaseUser mUser;
     private UserObject mCurrentUser;
     private ProgressDialog mProgreeDialog;
-    private boolean needToSignOut = false;
+    private boolean needToSignOut = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +145,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         } else {
 //                    mProgreeDialog.dismiss();
                             mCurrentUser = dataSnapshot.getValue(UserObject.class);
+                            needToSignOut = false;
                         }
                     }
                 }
@@ -153,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 public void onCancelled(DatabaseError databaseError) {
                     //fail the signin and signout the user
                     signOut(getApplicationContext());
-                    needToSignOut = true;
+                    needToSignOut = false;
                 }
             });
         }else{
@@ -172,6 +173,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             startActivity(intent);
                         } else {
 //                    mProgreeDialog.dismiss();
+                            needToSignOut = false;
                             mCurrentUser = dataSnapshot.getValue(UserObject.class);
                         }
                     }
@@ -181,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 public void onCancelled(DatabaseError databaseError) {
                     //fail the signin and signout the user
                     signOut(getApplicationContext());
-                    needToSignOut = true;
+                    needToSignOut = false;
                 }
             });
         }

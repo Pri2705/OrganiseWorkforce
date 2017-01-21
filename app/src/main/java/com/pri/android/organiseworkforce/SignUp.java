@@ -232,7 +232,7 @@ public class SignUp extends AppCompatActivity {
     private void pushCompanyModel(final OnGetDataListener onGetDataListener, CompanyModel companyModel) {
         onGetDataListener.onStart();
         mCompany = mFirebaseDatabase.getReference().child("company").child(companyModel.getEmail().replace(".", ","));
-        mWorker.setValue(companyModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mCompany.setValue(companyModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 onGetDataListener.onSuccess();
