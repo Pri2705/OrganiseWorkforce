@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "365340781141",
-    "firebase_url": "https://vipshackathon.firebaseio.com",
-    "project_id": "vipshackathon",
-    "storage_bucket": "vipshackathon.appspot.com"
+    "project_number": "214615827571",
+    "firebase_url": "https://organise-workforce.firebaseio.com",
+    "project_id": "organise-workforce",
+    "storage_bucket": "organise-workforce.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:365340781141:android:16dafddd9dd3872e",
+        "mobilesdk_app_id": "1:214615827571:android:16dafddd9dd3872e",
         "android_client_info": {
           "package_name": "com.pri.android.organiseworkforce"
         }
       },
       "oauth_client": [
         {
-          "client_id": "365340781141-s9v3sfn3kl91b98ocfqlrnecr6tk38oo.apps.googleusercontent.com",
+          "client_id": "214615827571-f57bbds2fjkl02gf8b8m5k2o3lm9iod2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.pri.android.organiseworkforce",
-            "certificate_hash": "5542C831B08A7A83758E0116D0C81EC9AA61D8D0"
+            "certificate_hash": "ED3AD1C4E5B3335641D664568403890B2108486B"
           }
         },
         {
-          "client_id": "365340781141-fest0nqvvbr9o6b04h118smfjni4qvcb.apps.googleusercontent.com",
+          "client_id": "214615827571-9c1q17juv8rq6rolh9soqbp87rgomlks.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDcwsVMA-VYGKAvLghARCplYIOZj6s8n2M"
+          "current_key": "AIzaSyBZOu1lIOE6zkc14cN3kImnba89yBrvlGw"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "365340781141-fest0nqvvbr9o6b04h118smfjni4qvcb.apps.googleusercontent.com",
+              "client_id": "214615827571-9c1q17juv8rq6rolh9soqbp87rgomlks.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

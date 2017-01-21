@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private FirebaseUser mUser;
     private UserObject mCurrentUser;
     private ProgressDialog mProgreeDialog;
-    private boolean needToSignOut = false;
+    private boolean needToSignOut = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         init();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken(getResources().getString(R.string.google_auth_key_1))
+                .requestIdToken(getResources().getString(R.string.google_auth_key_2))
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -68,8 +68,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mEmployeesRef = mFirebaseDatabase.getReference().child("employees");
-        mEmployersRef = mFirebaseDatabase.getReference().child("employers");
+        mEmployeesRef = mFirebaseDatabase.getReference().child("workers");
+        mEmployersRef = mFirebaseDatabase.getReference().child("company");
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -140,10 +140,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                        mRefUsers.child(email).setValue(mCurrentUser);
                             //TODO call signup activity
                             Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                            intent.putExtra(getString(R.string.user_data_login_to_signup),mCurrentUser);
                             startActivity(intent);
                         } else {
 //                    mProgreeDialog.dismiss();
                             mCurrentUser = dataSnapshot.getValue(UserObject.class);
+                            needToSignOut = false;
                         }
                     }
                 }
@@ -152,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 public void onCancelled(DatabaseError databaseError) {
                     //fail the signin and signout the user
                     signOut(getApplicationContext());
-                    needToSignOut = true;
+                    needToSignOut = false;
                 }
             });
         }else{
@@ -166,9 +168,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                        mCurrentUser.setCredits(0);
 //                        mRefUsers.child(email).setValue(mCurrentUser);
                             //TODO call signup activity
+                            Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                            intent.putExtra(getString(R.string.user_data_login_to_signup),mCurrentUser);
+                            startActivity(intent);
                         } else {
 //                    mProgreeDialog.dismiss();
                             mCurrentUser = dataSnapshot.getValue(UserObject.class);
+                            needToSignOut = false;
                         }
                     }
                 }
@@ -177,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 public void onCancelled(DatabaseError databaseError) {
                     //fail the signin and signout the user
                     signOut(getApplicationContext());
-                    needToSignOut = true;
+                    needToSignOut = false;
                 }
             });
         }
