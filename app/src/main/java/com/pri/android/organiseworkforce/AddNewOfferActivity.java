@@ -3,6 +3,7 @@ package com.pri.android.organiseworkforce;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -56,6 +57,8 @@ public class AddNewOfferActivity extends AppCompatActivity {
 
         populateArrayLists();
 
+        setUpSpinners();
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mPostsRef = mFirebaseDatabase.getReference().child("employers").child(mCurrentUser.getEmail().replace(".", ",")).child("offers");
 
@@ -83,6 +86,30 @@ public class AddNewOfferActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void setUpSpinners() {
+        ArrayAdapter<String> jobProfileAdapter = new ArrayAdapter<String>(AddNewOfferActivity.this, android.R.layout.simple_spinner_item,
+                mJobProfilesArrayList);
+        jobProfileAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mJobProfileSpinner.setAdapter(jobProfileAdapter);
+
+        ArrayAdapter<String> experienceAdapter = new ArrayAdapter<String>(AddNewOfferActivity.this, android.R.layout.simple_spinner_item,
+                mExperienceArrayList);
+        experienceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mExperienceSpinner.setAdapter(experienceAdapter);
+
+        ArrayAdapter<String> workingTimeAdapter = new ArrayAdapter<String>(AddNewOfferActivity.this, android.R.layout.simple_spinner_item,
+                mWorkingTimesArrayList);
+        workingTimeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mWorkingTimeSpinner.setAdapter(workingTimeAdapter);
+
+        ArrayAdapter<String> durationAdapter = new ArrayAdapter<String>(AddNewOfferActivity.this, android.R.layout.simple_spinner_item,
+                mDurationsArrayList);
+        durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mDurationSpinner.setAdapter(durationAdapter);
+
 
     }
 

@@ -26,6 +26,52 @@ public class WorkerModel implements Serializable {
     String prefWorkingTime;
     String expectedPay;
 
+    public int getExperiencePos() {
+        return experiencePos;
+    }
+
+    public void setExperiencePos(int experiencePos) {
+        this.experiencePos = experiencePos;
+    }
+
+    public int getPrefLocationPos() {
+        return prefLocationPos;
+    }
+
+    public void setPrefLocationPos(int prefLocationPos) {
+        this.prefLocationPos = prefLocationPos;
+    }
+
+    public int getPrefJobProfilePos() {
+        return prefJobProfilePos;
+    }
+
+    public void setPrefJobProfilePos(int prefJobProfilePos) {
+        this.prefJobProfilePos = prefJobProfilePos;
+    }
+
+    public int getExpectedPayPos() {
+        return expectedPayPos;
+    }
+
+    public void setExpectedPayPos(int expectedPayPos) {
+        this.expectedPayPos = expectedPayPos;
+    }
+
+    public int getEducationPos() {
+        return educationPos;
+    }
+
+    public void setEducationPos(int educationPos) {
+        this.educationPos = educationPos;
+    }
+
+    int experiencePos;
+    int prefLocationPos;
+    int prefJobProfilePos;
+    int expectedPayPos;
+    int educationPos;
+
     public WorkerModel() {
 
     }
