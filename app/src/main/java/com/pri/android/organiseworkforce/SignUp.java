@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -30,7 +31,7 @@ public class SignUp extends AppCompatActivity {
     LinearLayout llCompanyForm;
     EditText etWorkerAge;
     Spinner workerEducationSpinner;
-    EditText etExperience;
+    Spinner experianceSpinner;
     EditText etAdhaarNumber;
     EditText etPhoneNumber;
     EditText etAccountNumber;
@@ -39,6 +40,9 @@ public class SignUp extends AppCompatActivity {
     RadioGroup rgSelectedWorkingTime;
     Spinner expectedPaySpinner;
     ScrollView scrollView;
+
+    Button btWorkerSubmit;
+    Button btCompanySubmit;
 
     ArrayList<String> educationArrayList = new ArrayList<>();
     ArrayList<String> mJobProfilesArrayList = new ArrayList<>();
@@ -63,7 +67,7 @@ public class SignUp extends AppCompatActivity {
         scrollView = (ScrollView) findViewById(R.id.sign_up_scroll_form);
         etWorkerAge = (EditText) findViewById(R.id.sign_up_age);
         workerEducationSpinner = (Spinner) findViewById(R.id.sign_up_education_spinner);
-        etExperience = (EditText) findViewById(R.id.sign_up_experience);
+        experianceSpinner = (Spinner) findViewById(R.id.sign_up_experience_spinner);
         etAdhaarNumber = (EditText) findViewById(R.id.sign_up_adhaar_number);
         etPhoneNumber = (EditText) findViewById(R.id.sign_up_phone_number);
         etAccountNumber = (EditText) findViewById(R.id.sign_up_account_number);
@@ -72,6 +76,9 @@ public class SignUp extends AppCompatActivity {
         rgSelectedWorkingTime = (RadioGroup) findViewById(R.id.sign_up_work_time_radio);
         expectedPaySpinner = (Spinner) findViewById(R.id.sign_up_expected_pay_spinner);
         llCompanyForm = (LinearLayout) findViewById(R.id.sign_up_company_form);
+        btCompanySubmit = (Button)findViewById(R.id.sign_up_company_submit);
+        btWorkerSubmit = (Button)findViewById(R.id.sign_up_worker_submit);
+
         populateArrayLists();
         setUpSpinners();
         radioButtonGroup.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
@@ -124,6 +131,20 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
+        btWorkerSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btCompanySubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 
     private void populateArrayLists() {
@@ -147,11 +168,11 @@ public class SignUp extends AppCompatActivity {
         mDurationsArrayList.add("Short Term");
         mDurationsArrayList.add("Long Term");
 
-        mExperienceArrayList.add("0+");
-        mExperienceArrayList.add("1+");
-        mExperienceArrayList.add("2+");
-        mExperienceArrayList.add("3+");
-        mExperienceArrayList.add("4+");
+        mExperienceArrayList.add("0+ years");
+        mExperienceArrayList.add("1+ years");
+        mExperienceArrayList.add("2+ years");
+        mExperienceArrayList.add("3+ years");
+        mExperienceArrayList.add("4+ years");
 
     }
 
@@ -165,6 +186,13 @@ public class SignUp extends AppCompatActivity {
                 location);
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         prefLocationSpinner.setAdapter(locationAdapter);
+
+
+        ArrayAdapter<String> experienceAdapter = new ArrayAdapter<String>(SignUp.this, android.R.layout.simple_spinner_item,
+                mExperienceArrayList);
+        experienceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        experianceSpinner.setAdapter(experienceAdapter);
+
 
         ArrayAdapter<String> jobProfileAdapter = new ArrayAdapter<String>(SignUp.this, android.R.layout.simple_spinner_item,
                 mJobProfilesArrayList);
