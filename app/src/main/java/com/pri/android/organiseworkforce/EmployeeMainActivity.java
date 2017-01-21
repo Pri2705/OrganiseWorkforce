@@ -35,10 +35,6 @@ public class EmployeeMainActivity extends AppCompatActivity {
                 intent = new Intent(EmployeeMainActivity.this, EmployeeDetailsActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.action_history:
-                intent = new Intent(EmployeeMainActivity.this, EmployeeHistoryActivity.class);
-                startActivity(intent);
-                break;
             case R.id.action_logout:
                 LoginActivity.signOut(getApplicationContext());
                 break;

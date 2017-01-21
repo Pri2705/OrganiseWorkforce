@@ -58,7 +58,7 @@ public class HiredEmployeesFragment extends Fragment {
         // Inflate the layout for this fragment
         mRoot = inflater.inflate(R.layout.fragment_hired_employees, container, false);
 
-        mRecyclerView = (RecyclerView)mRoot.findViewById(R.id.all_hires_recyclerview);
+        mRecyclerView = (RecyclerView)mRoot.findViewById(R.id.all_hired_recyclerview);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mHiredRef = mFirebaseDatabase.getReference().child("hired");
         mHiredByCurrentUserRef = mFirebaseDatabase.getReference().child("hired").child(mCurrentUser.getEmail().replace(".", ","));

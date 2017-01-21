@@ -10,9 +10,10 @@
         android:text="Nobody hired Submitted So Far. Submit a new offer to hire someone now!"
         android:textSize="24sp"
         android:layout_gravity="center"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:id="@+id/empty_recyclerview_textview"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/all_hires_recyclerview"/>
+        android:id="@+id/all_hired_recyclerview"/>
 </FrameLayout>
