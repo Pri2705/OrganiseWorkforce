@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private static final int RC_SIGN_IN = 1;
     private SignInButton mEmployeeLogin;
     private SignInButton mEmployerLogin;
-    private int mButtonPressed;
+    private int mButtonPressed = 0;
     private static final String TAG = "LoginActivity";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -78,11 +78,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 if(mUser != null){
                     //user is signed in
                     initializeSignIn();
-                    if (!needToSignOut) {        //TODO check reason for implementation
-                        Intent intent = new Intent(LoginActivity.this, EmployerMainActivity.class);
-                        intent.putExtra("currentUser", mCurrentUser);
-                        supportFinishAfterTransition();
-                        startActivity(intent);
+                    if (!needToSignOut) {//TODO check reason for implementation
+                        if(mButtonPressed == 1) {
+                            Intent intent = new Intent(LoginActivity.this, EmployerMainActivity.class);
+                            intent.putExtra("currentUser", mCurrentUser);
+                            supportFinishAfterTransition();
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(LoginActivity.this, EmployeeMainActivity.class);
+                            intent.putExtra("currentUser", mCurrentUser);
+                            supportFinishAfterTransition();
+                            startActivity(intent);
+                        }
                     }
                 }else{
                     //user is signed out

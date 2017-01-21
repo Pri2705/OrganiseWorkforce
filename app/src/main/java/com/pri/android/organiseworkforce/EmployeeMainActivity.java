@@ -9,10 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class EmployeeMainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private UserObject mCurretnUser;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mUserRef;
+    private WorkerModel mCurrentWorker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,22 @@ public class EmployeeMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_main);
 
         mCurretnUser = (UserObject)getIntent().getSerializableExtra("currentUser");
+        mCurrentWorker = (WorkerModel)getIntent().getSerializableExtra("currentUserWorker");
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mUserRef = mFirebaseDatabase.getReference().child("company").child(mCurretnUser.getEmail().replace(".", ","));
+
+        mUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mCurrentWorker = (WorkerModel)dataSnapshot.getValue();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mViewPager = (ViewPager)findViewById(R.id.vpPager);
         FragmentPagerAdapter adapterViewPager = new EmployeeMainActivity.MyPagerAdapter(getSupportFragmentManager());

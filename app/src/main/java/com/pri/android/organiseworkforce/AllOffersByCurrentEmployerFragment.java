@@ -24,7 +24,7 @@ import java.util.Date;
 public class AllOffersByCurrentEmployerFragment extends Fragment {
 
     private Context mContext;
-    private UserObject mCurrentUser;
+    private CompanyModel mCurrentUser;
     private RecyclerView mRecyclerView;
     private View mRoot;
     private FirebaseDatabase mFirebaseDatabase;
@@ -40,7 +40,7 @@ public class AllOffersByCurrentEmployerFragment extends Fragment {
     }
 
 
-    public static AllOffersByCurrentEmployerFragment newInstance(String param1, UserObject currentUser) {
+    public static AllOffersByCurrentEmployerFragment newInstance(String param1, CompanyModel currentUser) {
         AllOffersByCurrentEmployerFragment fragment = new AllOffersByCurrentEmployerFragment();
         Bundle args = new Bundle();
 //        args.putString(ARG_PARAM1, param1);
@@ -56,7 +56,7 @@ public class AllOffersByCurrentEmployerFragment extends Fragment {
         if (getArguments() != null) {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
-            mCurrentUser = (UserObject)getArguments().getSerializable("currentUser");
+            mCurrentUser = (CompanyModel) getArguments().getSerializable("currentUser");
         }
     }
 
