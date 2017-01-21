@@ -1,6 +1,7 @@
 package com.pri.android.organiseworkforce;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -150,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     //fail the signin and signout the user
-                    signOut();
+                    signOut(getApplicationContext());
                     needToSignOut = true;
                 }
             });
@@ -175,7 +176,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     //fail the signin and signout the user
-                    signOut();
+                    signOut(getApplicationContext());
                     needToSignOut = true;
                 }
             });
@@ -242,7 +243,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 });
     }
 
-    private void signOut() {
+    public static void signOut(final Context context) {
         FirebaseAuth.getInstance().signOut();
         mGoogleApiClient.connect();
         mGoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
@@ -263,7 +264,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             @Override
             public void onConnectionSuspended(int i) {
-                Toast.makeText(getApplicationContext(), "Some error occured. Please try Again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Some error occured. Please try Again", Toast.LENGTH_SHORT).show();
             }
         });
     }

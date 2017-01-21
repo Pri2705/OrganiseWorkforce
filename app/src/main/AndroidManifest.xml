@@ -16,13 +16,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".EmployerMainActivity" />
-        <activity android:name=".AddNewOfferActivity"></activity>
-
+        <activity android:name=".AddNewOfferActivity" />
         <activity
             android:name=".SignUp"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".EmployeeMainActivity" />
+        <activity android:name=".EmployeeDetailsActivity" />
+        <activity android:name=".EmployeeHistoryActivity"></activity>
     </application>
 
 </manifest>
