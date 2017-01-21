@@ -11,10 +11,11 @@
     tools:context="com.pri.android.organiseworkforce.EmployeeDetailsActivity">
 
     <ScrollView
-        android:layout_below="@id/empty_view"
         android:id="@+id/sign_up_scroll_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
     <LinearLayout
         android:nestedScrollingEnabled="true"

@@ -155,8 +155,8 @@
                         android:layout_weight="1"
                         android:text="@string/experience" />
 
-                    <EditText
-                        android:id="@+id/sign_up_experience"
+                    <Spinner
+                        android:id="@+id/sign_up_experience_spinner"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -344,7 +344,7 @@
 
                 <Button
                     android:layout_marginTop="8dp"
-                    android:background="@color/red_700"
+                    android:background="@drawable/button_background"
                     android:id="@+id/sign_up_worker_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -431,7 +431,7 @@
 
                 <Button
                     android:layout_marginTop="8dp"
-                    android:background="@color/red_700"
+                    android:background="@drawable/button_background"
                     android:id="@+id/sign_up_company_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
