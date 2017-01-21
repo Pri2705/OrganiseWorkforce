@@ -3,6 +3,7 @@ package com.pri.android.organiseworkforce;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -229,20 +230,24 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private void pushCompanyModel(final OnGetDataListener onGetDataListener, CompanyModel companyModel) {
+    private void pushCompanyModel(final OnGetDataListener onGetDataListener, final CompanyModel companyModel) {
         onGetDataListener.onStart();
         mCompany = mFirebaseDatabase.getReference().child("company").child(companyModel.getEmail().replace(".", ","));
         mCompany.setValue(companyModel).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 onGetDataListener.onSuccess();
+                Intent intent = new Intent(SignUp.this,EmployerMainActivity.class);
+                intent.putExtra("currentUserCompany",companyModel);
+                supportFinishAfterTransition();
+                startActivity(intent);
             }
         });
 
 
     }
 
-    private void pushWorkerData(final OnGetDataListener onGetDataListener, WorkerModel workerModel) {
+    private void pushWorkerData(final OnGetDataListener onGetDataListener, final WorkerModel workerModel) {
         onGetDataListener.onStart();
         mWorker = mFirebaseDatabase.getReference().child("workers").child(workerModel.getEmail().replace(".", ","));
         mWorker.setValue(workerModel);
@@ -252,6 +257,10 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 onGetDataListener.onSuccess();
+                Intent intent = new Intent(SignUp.this,EmployeeMainActivity.class);
+                intent.putExtra("currentUserWorker",workerModel);
+                supportFinishAfterTransition();
+                startActivity(intent);
             }
         });
 

@@ -62,7 +62,7 @@ public class EmployeeMainActivity extends AppCompatActivity {
             switch (position) {
 
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return AllOffersByCurrentEmployerFragment.newInstance("All Offers", mCurretnUser);
+                    return WorkerCurrentOffers.newInstance("All Offers", mCurretnUser);
                 case 1: // Fragment # 0 - This will show FirstFragment different title
                     return HiredEmployeesFragment.newInstance("Hired Employees", mCurretnUser);
                 default:
