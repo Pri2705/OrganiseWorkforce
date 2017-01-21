@@ -5,6 +5,11 @@ package com.pri.android.organiseworkforce;
  */
 
 public class JobOfferObject {
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    private String companyName;
     private String jobProfile;
     private String experience;
     private String workingTime;

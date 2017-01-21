@@ -37,7 +37,7 @@ public class EmployeeMainActivity extends AppCompatActivity {
         mUserRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mCurrentWorker = (WorkerModel)dataSnapshot.getValue();
+                mCurrentWorker = (WorkerModel)dataSnapshot.getValue(WorkerModel.class);
             }
 
             @Override
@@ -89,7 +89,7 @@ public class EmployeeMainActivity extends AppCompatActivity {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return WorkerCurrentOffers.newInstance("All Offers", mCurretnUser);
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return HiredEmployeesFragment.newInstance("Hired Employees", mCurretnUser);
+                    return CurrentJob.newInstance("Hired Employees", mCurretnUser);
                 default:
                     return null;
             }
