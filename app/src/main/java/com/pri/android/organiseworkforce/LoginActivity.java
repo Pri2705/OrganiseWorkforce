@@ -138,6 +138,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                        mCurrentUser.setCredits(0);
 //                        mRefUsers.child(email).setValue(mCurrentUser);
                             //TODO call signup activity
+                            Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                            startActivity(intent);
                         } else {
 //                    mProgreeDialog.dismiss();
                             mCurrentUser = dataSnapshot.getValue(UserObject.class);

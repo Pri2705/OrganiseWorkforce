@@ -17,6 +17,12 @@
         </activity>
         <activity android:name=".EmployerMainActivity" />
         <activity android:name=".AddNewOfferActivity"></activity>
+
+        <activity
+            android:name=".SignUp"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
     </application>
 
 </manifest>
