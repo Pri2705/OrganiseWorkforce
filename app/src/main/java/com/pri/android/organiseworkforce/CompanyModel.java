@@ -1,10 +1,12 @@
 package com.pri.android.organiseworkforce;
 
+import java.io.Serializable;
+
 /**
  * Created by Parth on 21-01-2017.
  */
 
-public class CompanyModel {
+public class CompanyModel implements Serializable {
 
     private String userType;
     private String email;
@@ -48,5 +50,21 @@ public class CompanyModel {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public String getUid() {
+        return uid;
     }
 }

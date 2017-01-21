@@ -140,6 +140,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                        mRefUsers.child(email).setValue(mCurrentUser);
                             //TODO call signup activity
                             Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                            intent.putExtra(getString(R.string.user_data_login_to_signup),mCurrentUser);
                             startActivity(intent);
                         } else {
 //                    mProgreeDialog.dismiss();
@@ -166,6 +167,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 //                        mCurrentUser.setCredits(0);
 //                        mRefUsers.child(email).setValue(mCurrentUser);
                             //TODO call signup activity
+                            Intent intent = new Intent(LoginActivity.this, SignUp.class);
+                            intent.putExtra(getString(R.string.user_data_login_to_signup),mCurrentUser);
+                            startActivity(intent);
                         } else {
 //                    mProgreeDialog.dismiss();
                             mCurrentUser = dataSnapshot.getValue(UserObject.class);

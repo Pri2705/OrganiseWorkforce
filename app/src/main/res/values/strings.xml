@@ -2,6 +2,8 @@
     <string name="app_name">Organise Workforce</string>
     <string name="google_auth_key_2">214615827571-9c1q17juv8rq6rolh9soqbp87rgomlks.apps.googleusercontent.com</string>
     <string name="google_auth_key_1">365340781141-fest0nqvvbr9o6b04h118smfjni4qvcb.apps.googleusercontent.com</string>
+
+    <string name="user_data_login_to_signup">userData</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="age">Age</string>

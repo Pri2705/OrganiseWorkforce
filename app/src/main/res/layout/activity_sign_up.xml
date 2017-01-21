@@ -8,10 +8,12 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.pri.android.organiseworkforce.SignUp">
+
     <View
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
-        android:layout_height="128dp"/>
+        android:layout_height="128dp" />
+
     <co.ceryle.radiorealbutton.library.RadioRealButtonGroup
         android:id="@+id/sign_up_radio_group"
         android:layout_width="match_parent"
@@ -63,20 +65,19 @@
     </co.ceryle.radiorealbutton.library.RadioRealButtonGroup>
 
     <ScrollView
-        android:layout_below="@id/empty_view"
         android:id="@+id/sign_up_scroll_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/empty_view"
         android:visibility="gone">
 
         <LinearLayout
-            android:nestedScrollingEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
             android:orientation="vertical">
 
             <LinearLayout
-                android:overScrollMode="ifContentScrolls"
                 android:id="@+id/sign_up_worker_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,15 +85,16 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical"
+                android:overScrollMode="ifContentScrolls"
                 android:visibility="gone">
 
                 <TextView
-                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="@string/personal_details"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:typeface="serif" />
 
                 <View
@@ -182,6 +184,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:hint="@string/Adhaar_number"
                         android:inputType="number"
                         android:maxLines="1"
                         android:textSize="18sp" />
@@ -234,12 +237,12 @@
                 </LinearLayout>
 
                 <TextView
-                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="@string/preference"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:typeface="serif" />
 
                 <View
@@ -296,6 +299,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
+                    android:layout_marginTop="4dp"
+                    android:checkedButton="@+id/sign_up_work_time_day"
                     android:orientation="horizontal"
                     android:weightSum="3">
 
@@ -306,7 +311,7 @@
                         android:text="@string/time" />
 
                     <RadioButton
-                        android:id="@+id/sign_up_work_time_day"
+                        android:id="@id/sign_up_work_time_day"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -325,6 +330,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal"
                     android:weightSum="2">
 
@@ -343,14 +349,14 @@
                 </LinearLayout>
 
                 <Button
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/button_background"
                     android:id="@+id/sign_up_worker_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/button_background"
                     android:text="@string/submit" />
             </LinearLayout>
 
@@ -430,14 +436,14 @@
                 </LinearLayout>
 
                 <Button
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/button_background"
                     android:id="@+id/sign_up_company_submit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/button_background"
                     android:text="@string/submit" />
             </LinearLayout>
 

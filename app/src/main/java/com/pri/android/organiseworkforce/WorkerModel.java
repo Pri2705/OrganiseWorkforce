@@ -1,10 +1,12 @@
 package com.pri.android.organiseworkforce;
 
+import java.io.Serializable;
+
 /**
  * Created by Parth on 21-01-2017.
  */
 
-public class WorkerModel {
+public class WorkerModel implements Serializable {
 
     private String userType;
     private String email;
@@ -121,5 +123,21 @@ public class WorkerModel {
 
     public void setExpectedPay(String expectedPay) {
         this.expectedPay = expectedPay;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public String getUid() {
+        return uid;
     }
 }

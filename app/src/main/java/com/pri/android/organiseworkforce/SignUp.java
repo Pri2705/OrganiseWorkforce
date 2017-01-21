@@ -2,7 +2,9 @@ package com.pri.android.organiseworkforce;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +15,11 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -41,8 +48,20 @@ public class SignUp extends AppCompatActivity {
     Spinner expectedPaySpinner;
     ScrollView scrollView;
 
+    EditText etCompanyName, etCompanyTinNumber, etCompanyPhoneNumber;
+
     Button btWorkerSubmit;
     Button btCompanySubmit;
+    UserObject userObject;
+
+    private FirebaseDatabase mFirebaseDatabase;
+
+    private DatabaseReference mWorker;
+    private DatabaseReference mHiredWorker;
+    private DatabaseReference mUnhiredWorker;
+
+    private DatabaseReference mCompany;
+
 
     ArrayList<String> educationArrayList = new ArrayList<>();
     ArrayList<String> mJobProfilesArrayList = new ArrayList<>();
@@ -55,7 +74,15 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        userObject = (UserObject) getIntent().getSerializableExtra(getString(R.string.user_data_login_to_signup));
         init();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+    }
+
+    public interface OnGetDataListener {
+        public void onStart();
+
+        public void onSuccess();
     }
 
     private void init() {
@@ -76,8 +103,13 @@ public class SignUp extends AppCompatActivity {
         rgSelectedWorkingTime = (RadioGroup) findViewById(R.id.sign_up_work_time_radio);
         expectedPaySpinner = (Spinner) findViewById(R.id.sign_up_expected_pay_spinner);
         llCompanyForm = (LinearLayout) findViewById(R.id.sign_up_company_form);
-        btCompanySubmit = (Button)findViewById(R.id.sign_up_company_submit);
-        btWorkerSubmit = (Button)findViewById(R.id.sign_up_worker_submit);
+
+        etCompanyName = (EditText) findViewById(R.id.sign_up_company_name);
+        etCompanyTinNumber = (EditText) findViewById(R.id.sign_up_company_tin_number);
+        etCompanyPhoneNumber = (EditText) findViewById(R.id.sign_up_company_phone_number);
+
+        btCompanySubmit = (Button) findViewById(R.id.sign_up_company_submit);
+        btWorkerSubmit = (Button) findViewById(R.id.sign_up_worker_submit);
 
         populateArrayLists();
         setUpSpinners();
@@ -134,6 +166,35 @@ public class SignUp extends AppCompatActivity {
         btWorkerSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                WorkerModel workerModel = new WorkerModel();
+                workerModel.setUserObject(userObject);
+                workerModel.setAge(etWorkerAge.getText().toString());
+                workerModel.setEducation(workerEducationSpinner.getSelectedItem().toString());
+                workerModel.setExperience(experianceSpinner.getSelectedItem().toString());
+                workerModel.setAdhaarNumber(etAdhaarNumber.getText().toString());
+                workerModel.setPhoneNumber(etPhoneNumber.getText().toString());
+                workerModel.setAccountNumber(etAccountNumber.getText().toString());
+                workerModel.setPrefWorkingTime(getSelectedTime());
+
+                workerModel.setPrefLocation(prefLocationSpinner.getSelectedItem().toString());
+                workerModel.setPrefJobProfile(prefJobProfile.getSelectedItem().toString());
+                workerModel.setExpectedPay(expectedPaySpinner.getSelectedItem().toString());
+                final ProgressDialog progressDialog = new ProgressDialog(SignUp.this);
+
+                pushWorkerData(new OnGetDataListener() {
+                    @Override
+                    public void onStart() {
+
+                        progressDialog.setMessage("Uploading Data...");
+                        progressDialog.show();
+
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                        progressDialog.dismiss();
+                    }
+                }, workerModel);
 
             }
         });
@@ -141,19 +202,84 @@ public class SignUp extends AppCompatActivity {
         btCompanySubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CompanyModel companyModel = new CompanyModel();
+                companyModel.setUserObject(userObject);
 
+                companyModel.setCompanyName(etCompanyName.getText().toString());
+                companyModel.setPhoneNumber(etCompanyPhoneNumber.getText().toString());
+                companyModel.setTinNumber(etCompanyTinNumber.getText().toString());
+                final ProgressDialog progressDialog = new ProgressDialog(SignUp.this);
+
+                pushCompanyModel(new OnGetDataListener() {
+                    @Override
+                    public void onStart() {
+
+                        progressDialog.setMessage("Uploading Data...");
+                        progressDialog.show();
+
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                        progressDialog.dismiss();
+                    }
+                }, companyModel);
             }
         });
 
     }
 
+    private void pushCompanyModel(final OnGetDataListener onGetDataListener, CompanyModel companyModel) {
+        onGetDataListener.onStart();
+        mCompany = mFirebaseDatabase.getReference().child("company").child(companyModel.getEmail().replace(".", ","));
+        mWorker.setValue(companyModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                onGetDataListener.onSuccess();
+            }
+        });
+
+
+    }
+
+    private void pushWorkerData(final OnGetDataListener onGetDataListener, WorkerModel workerModel) {
+        onGetDataListener.onStart();
+        mWorker = mFirebaseDatabase.getReference().child("workers").child(workerModel.getEmail().replace(".", ","));
+        mWorker.setValue(workerModel);
+
+        mUnhiredWorker = mFirebaseDatabase.getReference().child("unHiredWorker").child(workerModel.getEmail().replace(".", ","));
+        mUnhiredWorker.setValue(workerModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                onGetDataListener.onSuccess();
+            }
+        });
+
+
+    }
+
+    private String getSelectedTime() {
+        if (rgSelectedWorkingTime.getCheckedRadioButtonId() == R.id.sign_up_work_time_day) {
+            return "day";
+        } else {
+            return "night";
+        }
+    }
+
     private void populateArrayLists() {
-        educationArrayList.add("illiterate");
-        educationArrayList.add("know to read and write");
-        educationArrayList.add("matrix pass");
+        educationArrayList.add("Illiterate");
+        educationArrayList.add("Know to read and write");
+        educationArrayList.add("Matrix pass");
         educationArrayList.add("Graduate");
 
-        location.add("");
+        location.add("Delhi");
+        location.add("Mumbai");
+        location.add("Bengaluru");
+        location.add("Kolkata");
+        location.add("Chennai");
+        location.add("Hyderabad");
+        location.add("Ahmedabad");
+        location.add("Pune");
 
         mJobProfilesArrayList.add("Construction Worker");
         mJobProfilesArrayList.add("Industrial Worker");
@@ -206,4 +332,5 @@ public class SignUp extends AppCompatActivity {
         expectedPaySpinner.setAdapter(expectedPayAdapter);
 
     }
+
 }
